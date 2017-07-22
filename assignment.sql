@@ -55,7 +55,6 @@ CREATE TABLE Driver (
     driverIC varchar(12),
     driverContact number(11),
     driverCompany varchar(50),
-    driverLicenseNo number(10),
     driverLicenseExpiry date,
     driverCurrentLocation varchar(100),
     driverStatus varchar(10),
@@ -96,6 +95,7 @@ CREATE TABLE Booking (
 CREATE TABLE Promotion (
     promoID varchar(10) NOT NULL,
     promoCode varchar(10),
+    promoPrice number(2),
     promoMinSpend number(4,2),
     promoDescription varchar(100),
     promoStartDate date,
