@@ -1,36 +1,38 @@
+DROP TABLE Payments;
+DROP TABLE Review;
+DROP TABLE Claim;
+DROP TABLE Promotion;
+DROP TABLE Booking;
+DROP TABLE Car;
+DROP TABLE Driver;
+DROP TABLE Trip;
+DROP TABLE CardDetail;
+DROP TABLE Member;
+
 CREATE TABLE Member (
     memID varchar(10) NOT NULL,
-    memName varchar(50) NOT NULL,
+    memName varchar(50),
     memUsername varchar(30),
-    memPassword varchar(20) NOT NULL,
+    memPassword varchar(20),
     memEmail varchar(50),
-    memIC varchar(12) NOT NULL,
+    memIC varchar(12),
     memContact number(11),
     memStatus varchar(10),
-    memCreateDate date,
-    memUpdateDate date,
+    createdDate date,
+    updatedDate date,
     PRIMARY KEY (memID)
 );
 
-CREATE TABLE CardDetails (
+CREATE TABLE CardDetail (
     cardID varchar(10) NOT NULL,
-    cardNo number(10) NOT NULL,
-    cardSecurityNo number(6) NOT NULL,
-    cardExpiry date NOT NULL,
-    memID varchar(10) NOT NULL,
-    cardCreateDate date,
-    cardUpdateDate date,
+    cardNo number(10),
+    cardSecurityNo number(3),
+    cardExpiry date,
+    memID varchar(10),
+    createdDate date,
+    updatedDate date,
     PRIMARY KEY (cardID),
     FOREIGN KEY (memID) REFERENCES Member(memID)
-);
-
-CREATE TABLE Favourite (
-    favID varchar(10) NOT NULL,
-    favPlace varchar(50),
-    memID varchar(10) NOT NULL,
-    favCreateDate date,
-    favUpdateDate date,
-    PRIMARY KEY (favID)
 );
 
 CREATE TABLE Trip (
@@ -40,60 +42,51 @@ CREATE TABLE Trip (
     pickupDate date,
     distance number(4,2),
     duration number(4,2),
-    tripCreateDate date,
-    tripUpdateDate date,
+    createdDate date,
+    updatedDate date,
     PRIMARY KEY (tripID)
 );
 
 CREATE TABLE Driver (
     driverID varchar(10) NOT NULL,
-    driverName varchar(50) NOT NULL,
+    driverName varchar(50),
     driverUsername varchar(30),
-    driverPassword varchar(20) NOT NULL,
-    driverIC varchar(12) NOT NULL,
+    driverPassword varchar(20),
+    driverIC varchar(12),
     driverContact number(11),
     driverCompany varchar(50),
     driverLicenseNo number(10),
     driverLicenseExpiry date,
     driverCurrentLocation varchar(100),
     driverStatus varchar(10),
-    driverCreateDate date,
-    driverUpdateDate date,
+    createdDate date,
+    updatedDate date,
     PRIMARY KEY (driverID)
 );
 
 CREATE TABLE Car (
     carID varchar(10) NOT NULL,
-    carPlateNo varchar(10) NOT NULL,
+    carPlateNo varchar(10),
     carModel varchar(30),
+    carCapacity number(2),
+    carFixedFare number(4,2),
     carStatus varchar(10),
-    typeID varchar(10) NOT NULL,
-    driverID varchar(10) NOT NULL,
-    carCreateDate date,
-    carUpdateDate date,
+    driverID varchar(10),
+    createdDate date,
+    updatedDate date,
     PRIMARY KEY (carID),
-    FOREIGN KEY (typeID) REFERENCES CarType(typeID),
     FOREIGN KEY (driverID) REFERENCES Driver(driverID)
-);
-
-CREATE TABLE CarType (
-    typeID varchar(10) NOT NULL,
-    typeName varchar(50),
-    fixedFare number(4,2),
-    typeCreateDate date,
-    typeUpdateDate date,
-    PRIMARY KEY (typeID)
 );
 
 CREATE TABLE Booking (
     bookingID varchar(10) NOT NULL,
     totalFare number(4,2),
     bookingStatus varchar(10),
-    memID varchar(10) NOT NULL,
-    driverID varchar(10) NOT NULL,
-    tripID varchar(10) NOT NULL,
-    bookingCreateDate date,
-    bookingUpdateDate date,
+    memID varchar(10),
+    driverID varchar(10),
+    tripID varchar(10),
+    createdDate date,
+    updatedDate date,
     PRIMARY KEY (bookingID),
     FOREIGN KEY (memID) REFERENCES Member(memID),
     FOREIGN KEY (driverID) REFERENCES Driver(driverID),
@@ -103,28 +96,54 @@ CREATE TABLE Booking (
 CREATE TABLE Promotion (
     promoID varchar(10) NOT NULL,
     promoCode varchar(10),
+    promoMinSpend number(4,2),
     promoDescription varchar(100),
     promoStartDate date,
     promoEndDate date,
     promoMaxRedemption number(4),
-    promoCreateDate date,
-    promoUpdateDate date,
+    createdDate date,
+    updatedDate date,
     PRIMARY KEY (promoID)
+);
+
+CREATE TABLE Claim (
+    claimID varchar(10) NOT NULL,
+    claimStatus varchar(10),
+    memID varchar(10),
+    promoID varchar(10),
+    createdDate date,
+    updatedDate date,
+    PRIMARY KEY (claimID),
+    FOREIGN KEY (memID) REFERENCES Member(memID),
+    FOREIGN KEY (promoID) REFERENCES Promotion(promoID)
+);
+
+CREATE TABLE Review (
+    reviewID varchar(10) NOT NULL,
+    reviewRating number(1),
+    reviewComment varchar(100),
+    createdDate date,
+    updatedDate date,
+    PRIMARY KEY (reviewID)
 );
 
 CREATE TABLE Payment (
     paymentID varchar(10) NOT NULL,
-    receiptNo number(10) NOT NULL,
-    paymentDate date NOT NULL,
-    charges number(4,2),
+    receiptNo number(10),
+    paymentDate date,
+    subTotal number(4,2),
     totalAmount number(4,2),
     paymentType varchar(10),
     paymentStatus varchar(10),
-    bookingID varchar(10) NOT NULL,
-    promoID varchar(10) NOT NULL,
-    paymentCreateDate date,
-    paymentUpdateDate date,
+    claimID varchar(10),
+    cardID varchar(10),
+    tripID varchar(10),
+    reviewID varchar(10),
+    createdDate date,
+    updatedDate date,
     PRIMARY KEY (paymentID),
-    FOREIGN KEY (bookingID) REFERENCES Booking(bookingID),
-    FOREIGN KEY (promoID) REFERENCES Promotion(promoID)
+    FOREIGN KEY (claimID) REFERENCES Claim(claimID),
+    FOREIGN KEY (cardID) REFERENCES CardDetail(cardID),
+    FOREIGN KEY (tripID) REFERENCES Trip(tripID),
+    FOREIGN KEY (reviewID) REFERENCES Review(reviewID)
 );
