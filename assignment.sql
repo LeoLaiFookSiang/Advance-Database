@@ -25,7 +25,7 @@ CREATE TABLE Member (
 
 CREATE TABLE CardDetail (
     cardID varchar(10) NOT NULL,
-    cardNo number(10),
+    cardNo number(16),
     cardSecurityNo number(3),
     cardExpiry date,
     memID varchar(10),
