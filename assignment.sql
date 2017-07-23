@@ -100,7 +100,6 @@ CREATE TABLE Promotion (
     promoDescription varchar(100),
     promoStartDate date,
     promoEndDate date,
-    promoMaxRedemption number(4),
     createdDate date,
     updatedDate date,
     PRIMARY KEY (promoID)
