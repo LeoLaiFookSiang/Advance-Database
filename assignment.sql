@@ -79,7 +79,7 @@ CREATE TABLE Car (
 
 CREATE TABLE Booking (
     bookingID varchar(10) NOT NULL,
-    totalFare number(4,2),
+    totalFare number(5,2),
     bookingStatus varchar(10),
     memID varchar(10),
     driverID varchar(10),
