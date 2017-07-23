@@ -129,7 +129,7 @@ CREATE TABLE Review (
 
 CREATE TABLE Payment (
     paymentID varchar(10) NOT NULL,
-    receiptNo number(10),
+    receiptNo varchar(10),
     paymentDate date,
     subTotal number(4,2),
     totalAmount number(4,2),
