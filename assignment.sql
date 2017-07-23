@@ -41,7 +41,7 @@ CREATE TABLE Trip (
     destination varchar(100),
     pickupDate date,
     distance number(4,2),
-    duration number(4,2),
+    duration number(4),
     createdDate date,
     updatedDate date,
     PRIMARY KEY (tripID)
