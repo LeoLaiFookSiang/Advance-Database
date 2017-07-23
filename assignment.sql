@@ -10,13 +10,13 @@ DROP TABLE Car;
 DROP TABLE Driver;
 
 CREATE TABLE Member (
-    memID varchar(10) NOT NULL,
+    memID number(10) NOT NULL,
     memName varchar(50),
     memUsername varchar(30),
     memPassword varchar(20),
     memEmail varchar(50),
     memIC varchar(12),
-    memContact number(11),
+    memContact varchar(11),
     memStatus varchar(10),
     createdDate date,
     updatedDate date,
@@ -24,7 +24,7 @@ CREATE TABLE Member (
 );
 
 CREATE TABLE CardDetail (
-    cardID varchar(10) NOT NULL,
+    cardID number(10) NOT NULL,
     cardNo number(16),
     cardSecurityNo number(3),
     cardExpiry date,
@@ -36,7 +36,7 @@ CREATE TABLE CardDetail (
 );
 
 CREATE TABLE Trip (
-    tripID varchar(10) NOT NULL,
+    tripID number(10) NOT NULL,
     origin varchar(100),
     destination varchar(100),
     pickupDate date,
@@ -48,12 +48,12 @@ CREATE TABLE Trip (
 );
 
 CREATE TABLE Driver (
-    driverID varchar(10) NOT NULL,
+    driverID number(10) NOT NULL,
     driverName varchar(50),
     driverUsername varchar(30),
     driverPassword varchar(20),
     driverIC varchar(12),
-    driverContact number(11),
+    driverContact varchar(11),
     driverCompany varchar(50),
     driverLicenseExpiry date,
     driverCurrentLocation varchar(100),
@@ -64,7 +64,7 @@ CREATE TABLE Driver (
 );
 
 CREATE TABLE Car (
-    carID varchar(10) NOT NULL,
+    carID number(10) NOT NULL,
     carPlateNo varchar(10),
     carModel varchar(30),
     carCapacity number(2),
@@ -78,7 +78,7 @@ CREATE TABLE Car (
 );
 
 CREATE TABLE Booking (
-    bookingID varchar(10) NOT NULL,
+    bookingID number(10) NOT NULL,
     totalFare number(5,2),
     bookingStatus varchar(10),
     memID varchar(10),
@@ -93,7 +93,7 @@ CREATE TABLE Booking (
 );
 
 CREATE TABLE Promotion (
-    promoID varchar(10) NOT NULL,
+    promoID number(10) NOT NULL,
     promoCode varchar(10),
     promoPrice number(2),
     promoMinSpend number(4,2),
@@ -106,7 +106,7 @@ CREATE TABLE Promotion (
 );
 
 CREATE TABLE Claim (
-    claimID varchar(10) NOT NULL,
+    claimID number(10) NOT NULL,
     claimStatus varchar(10),
     memID varchar(10),
     promoID varchar(10),
@@ -118,7 +118,7 @@ CREATE TABLE Claim (
 );
 
 CREATE TABLE Review (
-    reviewID varchar(10) NOT NULL,
+    reviewID number(10) NOT NULL,
     reviewRating number(1),
     reviewComment varchar(100),
     createdDate date,
@@ -127,7 +127,7 @@ CREATE TABLE Review (
 );
 
 CREATE TABLE Payment (
-    paymentID varchar(10) NOT NULL,
+    paymentID number(10) NOT NULL,
     receiptNo varchar(10),
     paymentDate date,
     subTotal number(4,2),
