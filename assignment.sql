@@ -12,7 +12,7 @@ DROP TABLE Driver;
 CREATE TABLE Member (
     memID number(10) NOT NULL,
     memName varchar(50),
-    memUsername varchar(30),
+    memUsername varchar(50),
     memPassword varchar(20),
     memEmail varchar(50),
     memIC varchar(12),
