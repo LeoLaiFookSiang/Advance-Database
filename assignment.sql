@@ -94,7 +94,7 @@ CREATE TABLE Booking (
 
 CREATE TABLE Promotion (
     promoID number(10) NOT NULL,
-    promoCode varchar(10),
+    promoCode varchar(15),
     promoPrice number(2),
     promoMinSpend number(4,2),
     promoDescription varchar(100),
