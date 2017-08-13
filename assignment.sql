@@ -13,7 +13,7 @@ CREATE TABLE Member (
     memID number(10) NOT NULL,
     memName varchar(50),
     memUsername varchar(50),
-    memPassword varchar(20),
+    memPassword varchar(50),
     memEmail varchar(50),
     memIC varchar(12),
     memContact varchar(11),
